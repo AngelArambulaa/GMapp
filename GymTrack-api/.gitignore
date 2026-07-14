@@ -1,0 +1,41 @@
+# Virtual environment — NEVER commit this
+venv/
+env/
+.venv/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+
+# Database
+*.db
+*.sqlite3
+
+# Alembic (keep versions folder but ignore local cache)
+alembic/versions/__pycache__/
+
+# Editor
+.vscode/
+.idea/
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Distribution
+dist/
+build/
+*.egg-info/

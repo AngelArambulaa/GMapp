@@ -1,0 +1,99 @@
+add hitgub 
+remove the localip 
+
+0kg mistake
+========================
+
+I would like to be able to acces to the details of the 
+training when clicking on one of the trainings on the history 
+page
+
+add towards athlete 
+<FontAwesomeIcon icon={byPrefixAndName.fas['person-running']} /> 
+
+I would like to see how my past records on the same routine
+so i can compare my last record and do my actual exercise 
+based on the past while im training. 
+
+
+
+========================
+
+
+
+VITE.CONFIG.JS:
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5173,
+    host: '0.0.0.0',  // ← exposes to local network
+  },
+})
+
+
+API
+
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+
+CLIENT.JS
+
+import axios from 'axios'
+
+const api = axios.create({
+  baseURL: 'http://10.0.0.13:8080',
+  headers: { 'Content-Type': 'application/json' },
+})
+
+// Attach token to every request
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) config.headers.Authorization = `Bearer ${token}`
+  return config
+})
+
+// Auto-logout on 401
+api.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response?.status === 401) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      window.location.href = '/login'
+    }
+    return Promise.reject(err)
+  }
+)
+
+export default api
+
+
+MAIN.PY GymTrackApi/APP
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.api.routes import auth, exercises, routines, sessions, users
+
+app = FastAPI(title="GymTrack API", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173",
+                   "http://10.0.0.13:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(auth.router)
+app.include_router(exercises.router)
+app.include_router(routines.router)
+app.include_router(sessions.router)
+app.include_router(users.router)
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
