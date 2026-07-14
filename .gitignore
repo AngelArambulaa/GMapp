@@ -1,1 +1,15 @@
 issues.txt
+
+# Environment files anywhere in the project
+**/.env
+**/.env.local
+**/.env.production
+
+# Never commit these
+**/venv/
+**/node_modules/
+**/__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
