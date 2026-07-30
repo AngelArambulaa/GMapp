@@ -22,6 +22,10 @@ import {
   faUsers,
   faCalendarDays,
   faBolt,
+  faLock,
+  faTriangleExclamation,
+  faBoxArchive,
+  faBoxOpen,
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -48,6 +52,10 @@ library.add(
   faUsers,
   faCalendarDays,
   faBolt,
+  faLock,
+  faTriangleExclamation,
+  faBoxArchive,
+  faBoxOpen
 
 )
 

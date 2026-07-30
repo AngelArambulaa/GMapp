@@ -7,8 +7,14 @@ export const authApi = {
 }
 
 export const exercisesApi = {
-  list   : (params) => api.get('/exercises', { params }),
-  create : (data)   => api.post('/exercises', data),
+  list        : (params)   => api.get('/exercises', { params }),
+  create      : (data)     => api.post('/exercises', data),
+  update      : (id, data) => api.put(`/exercises/${id}`, data),
+  usage       : (id)       => api.get(`/exercises/${id}/usage`),
+  archive     : (id)       => api.patch(`/exercises/${id}/archive`),
+  unarchive   : (id)       => api.patch(`/exercises/${id}/unarchive`),
+  delete      : (id)       => api.delete(`/exercises/${id}`),
+  forceDelete : (id)       => api.delete(`/exercises/${id}/force`),
 }
 
 export const routinesApi = {

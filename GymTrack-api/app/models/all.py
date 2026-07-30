@@ -44,7 +44,7 @@ class Exercise(Base):
     exercise_type = Column(Enum("strength", "cardio", "flexibility", name="exercise_type"), default="strength")
     description   = Column(Text)
     created_by    = Column(String(36), ForeignKey("users.id"), nullable=True)
-
+    archived      = Column(Integer, default=0)  # 0 = active, 1 = archived
 
 class Routine(Base):
     __tablename__ = "routines"

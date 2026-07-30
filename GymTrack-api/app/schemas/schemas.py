@@ -36,6 +36,8 @@ class ExerciseOut(BaseModel):
     muscle_group: Optional[str]
     exercise_type: str
     description: Optional[str]
+    created_by: Optional[str]
+    archived: Optional[int] = 0  # ← default 0, allows None from old rows
 
     class Config:
         orm_mode = True
@@ -137,3 +139,9 @@ class ProgressPoint(BaseModel):
 class ExerciseProgress(BaseModel):
     exercise: ExerciseOut
     data_points: List[ProgressPoint]
+
+class ExerciseUsageStats(BaseModel):
+    exercise_id: str
+    total_sets: int
+    total_sessions: int
+    can_delete: bool  # True only if no history at all

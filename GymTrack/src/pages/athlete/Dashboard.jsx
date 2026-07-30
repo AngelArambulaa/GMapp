@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import AppLayout from '../../components/layout/AppLayout'
 import { useAuth } from '../../contexts/AuthContext'
 import { sessionsApi, routinesApi } from '../../api'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function greeting() {
   const h = new Date().getHours()
@@ -89,6 +90,19 @@ export default function AthleteDashboard() {
         </Link>
         <Link to="/routines/new" className="btn-secondary text-center py-4 text-base">
           + Create Routine
+        </Link>
+      </div>
+
+      {/* Secondary actions */}
+      <div className="flex gap-2 mb-7">
+        <Link
+          to="/exercises"
+          className="flex-1 text-center text-xs text-gray-400 hover:text-white
+                    bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06]
+                    hover:border-white/10 px-3 py-2.5 rounded-xl transition-all"
+        >
+          <FontAwesomeIcon icon="fa-solid fa-dumbbell" className="mr-1.5" />
+          My Exercises
         </Link>
       </div>
 

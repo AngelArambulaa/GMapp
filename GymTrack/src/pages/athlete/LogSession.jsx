@@ -102,8 +102,8 @@ export default function LogSession() {
   }
 
   const filtered = exercises
-    .filter(e => e.name.toLowerCase().includes(search.toLowerCase()))
-    .slice(0, 8)
+    .filter(e => e.name.toLowerCase().includes(search.toLowerCase()) || e.muscle_group.toLowerCase().includes(search.toLowerCase()) || e.exercise_type.toLowerCase().includes(search.toLowerCase()))
+    // .slice(0, 8) give only the first 8 results
 
   const grouped = loggedSets.reduce((acc, s) => {
     const key = s.exercise.name
@@ -366,7 +366,7 @@ export default function LogSession() {
                   <div className="flex flex-wrap gap-1.5">
                     {prevRecord.last_sets.map((s, i) => (
                       <span key={i} className="text-xs bg-white/[0.06] border border-white/10 text-gray-300 px-2.5 py-1 rounded-full">
-                        {s.reps}r{s.weight_kg ? ` · ${s.weight_kg}kg` : ''}
+                        {s.reps}r{s.weight_kg ? ` · ${s.weight_kg}kg` : ''}{s.rpe ? ` · RPE ${s.rpe}` : ''}
                       </span>
                     ))}
                   </div>
@@ -457,7 +457,7 @@ export default function LogSession() {
                 <div className="flex flex-wrap gap-2">
                   {sets.map(s => (
                     <span key={s.id} className="text-xs bg-white/[0.05] border border-white/10 text-gray-300 px-2.5 py-1 rounded-full">
-                      {s.reps}r{s.weight_kg ? ` · ${s.weight_kg}kg` : ''}
+                      {s.reps}r{s.weight_kg ? ` · ${s.weight_kg}kg` : ''}{}{s.rpe ? ` · RPE ${s.rpe}` : ''}
                     </span>
                   ))}
                 </div>

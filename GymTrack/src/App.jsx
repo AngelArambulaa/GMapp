@@ -12,6 +12,7 @@ import Progress             from './pages/athlete/Progress'
 import AthleteRoutineBuilder from './pages/athlete/RoutineBuilder'
 import SessionDetail from './pages/athlete/SessionDetail'
 import RoutineDetail from './pages/athlete/RoutineDetail'
+import Exercises from './pages/athlete/Exercises'
 
 // Coach pages
 import CoachDashboard  from './pages/coach/Dashboard'
@@ -46,6 +47,7 @@ export default function App() {
       <Route path="/history/:sessionId" element={<Guard role="athlete"><SessionDetail /></Guard>} />
       <Route path="/routines/:id/edit"   element={<Guard role="athlete"><AthleteRoutineBuilder /></Guard>} />
       <Route path="/routines/:id" element={<Guard role="athlete"><RoutineDetail /></Guard>} />
+      <Route path="/exercises" element={<Guard role="athlete"><Exercises /></Guard>} />
       {/* Coach */}
       <Route path="/coach"                     element={<Guard role="coach"><CoachDashboard /></Guard>} />
       <Route path="/coach/routines/new"        element={<Guard role="coach"><RoutineBuilder /></Guard>} />
